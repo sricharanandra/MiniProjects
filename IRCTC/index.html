@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Ticket</title>
+</head>
+<body>
+  <button id="download-ticket" class="btn">Download Ticket</button>
+
+  <script>
+    const downloadButton = document.getElementById('download-ticket');
+
+    downloadButton.addEventListener('click', () => {
+      const ticketData = {
+        trainNumber: '12345',
+        departureTime: '08:00 AM',
+        arrivalTime: '10:30 AM',
+        duration: '2 hours'
+      };
+
+      const ticketInfo = `Train Number: ${ticketData.trainNumber}\nDeparture Time: ${ticketData.departureTime}\nArrival Time: ${ticketData.arrivalTime}\nDuration: ${ticketData.duration}`;
+
+      const blob = new Blob([ticketInfo], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ticket.txt';
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

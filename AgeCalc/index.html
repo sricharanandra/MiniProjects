@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Calculator</title>
+</head>
+<body>
+  <h1>Age Calculator</h1>
+  <input type="date" id="birthdate-input">
+  <button id="calculate-age-btn">Calculate Age</button>
+  <p id="age"></p>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('calculate-age-btn').addEventListener('click', function() {
+      const birthdateInput = document.getElementById('birthdate-input').value;
+      const birthdate = new Date(birthdateInput);
+      const age = calculateAge(birthdate);
+      document.getElementById('age').innerHTML = `Your age is ${age} years.`;
+    });
+  </script>
+</body>
+</html>

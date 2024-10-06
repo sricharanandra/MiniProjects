@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Chart</title>
+  <style>
+    #alphabet-chart {
+      position: relative;
+    }
+
+    #alphabet-chart img {
+      width: 100%;
+      height: auto;
+    }
+
+    #alphabet-chart area {
+      cursor: pointer;
+    }
+
+    #alphabet-chart area:hover {
+      opacity: 0.5;
+    }
+
+    #example-container {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #example-container h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="alphabet-chart">
+    <img src="alphabet-chart.png" usemap="#alphabet-map">
+    <div id="example-container">
+      <h2>Example</h2>
+      <p id="example-text"></p>
+    </div>
+  </div>
+
+  <script>
+    const alphabetChart = document.getElementById('alphabet-chart');
+    const exampleContainer = document.getElementById('example-container');
+    const exampleText = document.getElementById('example-text');
+
+    alphabetChart.addEventListener('click', (event) => {
+      if (event.target.tagName === 'AREA') {
+        const letter = event.target.getAttribute('data-letter');
+        const example = getExample(letter);
+        exampleText.textContent = example;
+        exampleContainer.style.display = 'block';
+      } else {
+        exampleContainer.style.display = 'none';
+      }
+    });
+
+    function getExample(letter) {
+      const examples = {
+        A: 'Example for A',
+        B: 'Example for B',
+        C: 'Example for C',
+        // Add more examples for other letters
+      };
+      return examples[letter] || 'No example available';
+    }
+  </script>
+</body>
+</html>

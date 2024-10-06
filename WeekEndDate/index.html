@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Week End Date Calculator</title>
+</head>
+<body>
+  <h1>Week End Date Calculator</h1>
+  <input type="date" id="date-input">
+  <button id="get-week-end-date-btn">Get Week End Date</button>
+  <p id="week-end-date"></p>
+
+  <script>
+    function getWeekEndDate(date) {
+      const dayOfWeek = date.getDay();
+      const diff = dayOfWeek >= 0 ? 7 - dayOfWeek : -dayOfWeek;
+      const weekEndDate = new Date(date.getTime() + diff * 24 * 60 * 60 * 1000);
+      return weekEndDate;
+    }
+
+    document.getElementById('get-week-end-date-btn').addEventListener('click', function() {
+      const dateInput = document.getElementById('date-input').value;
+      const date = new Date(dateInput);
+      const weekEndDate = getWeekEndDate(date);
+      document.getElementById('week-end-date').innerHTML = 'Week End Date: ' + weekEndDate.toLocaleDateString();
+    });
+  </script>
+</body>
+</html>
